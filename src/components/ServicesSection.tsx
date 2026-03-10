@@ -182,12 +182,12 @@ export default function ServicesSection() {
                     className="text-center mt-14"
                 >
                     <a
-                        href="#kontakt"
+                        href="/nacenenie"
                         className="inline-flex items-center gap-3 text-white/70 hover:text-[#E31C25] text-sm font-semibold tracking-widest uppercase transition-colors duration-300 group"
                         style={{ fontFamily: 'var(--font-montserrat)' }}
                     >
                         <span className="w-8 h-px bg-current group-hover:w-12 transition-all duration-300" />
-                        Objednajte sa na servis
+                        Objednať sa
                         <span className="w-8 h-px bg-current group-hover:w-12 transition-all duration-300" />
                     </a>
                 </motion.div>

@@ -135,12 +135,12 @@ export default function Navbar() {
                                 </Link>
                             ))}
                             <Link
-                                href="/#kontakt"
+                                href="/nacenenie"
                                 onClick={() => setMenuOpen(false)}
                                 className="mt-2 text-center bg-[#E31C25] hover:bg-[#c0151d] text-white font-bold text-sm px-6 py-3 rounded-sm tracking-widest uppercase transition-colors"
                                 style={{ fontFamily: 'var(--font-montserrat)' }}
                             >
-                                REZERVOVAŤ TERMÍN
+                                OBJEDNAŤ SA
                             </Link>
                         </div>
                     </motion.div>

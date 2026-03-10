@@ -118,11 +118,11 @@ export default function HeroSection() {
                 {/* CTAs */}
                 <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
-                        href="#kontakt"
+                        href="/nacenenie"
                         className="group relative inline-flex items-center justify-center gap-3 bg-[#E31C25] hover:bg-[#c0151d] text-white font-bold px-8 py-4 text-sm tracking-widest uppercase rounded-sm transition-all duration-300 hover:shadow-xl hover:shadow-[#E31C25]/40 hover:-translate-y-1 overflow-hidden"
                         style={{ fontFamily: 'var(--font-montserrat)' }}
                     >
-                        <span className="relative z-10">DOHODNÚŤ OBHLIADKU</span>
+                        <span className="relative z-10">OBJEDNAŤ SA</span>
                         <svg className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>

@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="sk" className="scroll-smooth">
       <body
-        className={`${montserrat.variable} ${inter.variable} ${dancingScript.variable} antialiased`}
+        className={`${montserrat.variable} ${inter.variable} ${dancingScript.variable} antialiased overflow-x-hidden flex flex-col min-h-screen`}
       >
         {children}
         <CookieBanner />

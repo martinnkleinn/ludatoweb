@@ -188,7 +188,7 @@ export default function AboutSection() {
                         <motion.div
                             animate={{ y: [-6, 6, -6] }}
                             transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-                            className="absolute -top-4 -right-4 bg-[#E31C25] text-white px-4 py-3 rounded-sm shadow-xl"
+                            className="absolute -top-4 right-2 sm:-right-4 bg-[#E31C25] text-white px-4 py-3 rounded-sm shadow-xl z-10"
                         >
                             <div className="text-xl font-black" style={{ fontFamily: 'var(--font-montserrat)' }}>100%</div>
                             <div className="text-xs opacity-80" style={{ fontFamily: 'var(--font-inter)' }}>Transparentnosť</div>
@@ -197,7 +197,7 @@ export default function AboutSection() {
                         <motion.div
                             animate={{ y: [6, -6, 6] }}
                             transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-                            className="absolute -bottom-4 -left-4 bg-[#1D1D1B] border border-[#E31C25]/30 text-white px-4 py-3 rounded-sm shadow-xl"
+                            className="absolute -bottom-4 left-2 sm:-left-4 bg-[#1D1D1B] border border-[#E31C25]/30 text-white px-4 py-3 rounded-sm shadow-xl z-10"
                         >
                             <div className="text-xl font-black text-[#E31C25]" style={{ fontFamily: 'var(--font-montserrat)' }}>Poctivá</div>
                             <div className="text-xs opacity-60" style={{ fontFamily: 'var(--font-inter)' }}>Práca</div>
