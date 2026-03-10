@@ -131,7 +131,7 @@ export default function Footer() {
                         © {new Date().getFullYear()} Prevádzkovateľ: LUDATO FAMILY, s.r.o., Karpatské námestie 10/A, Bratislava. Všetky práva vyhradené.
                     </p>
                     <a
-                        href="#"
+                        href="https://byforma.eu"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white/30 hover:text-[#E31C25] text-xs transition-colors"
