@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main>
+    <main className="relative overflow-x-hidden w-full">
       <Navbar />
       <HeroSection />
       <ServicesSection />

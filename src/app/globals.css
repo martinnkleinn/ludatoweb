@@ -18,6 +18,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -26,15 +28,19 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #1D1D1B;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #E31C25;
   border-radius: 3px;
@@ -44,6 +50,7 @@ body {
 .nav-link {
   position: relative;
 }
+
 .nav-link::after {
   content: '';
   position: absolute;
@@ -54,6 +61,7 @@ body {
   background: #E31C25;
   transition: width 0.3s ease;
 }
+
 .nav-link:hover::after {
   width: 100%;
 }

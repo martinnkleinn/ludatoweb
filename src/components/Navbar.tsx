@@ -81,11 +81,11 @@ export default function Navbar() {
                         className="hidden md:flex flex-1 justify-end"
                     >
                         <Link
-                            href="/#kontakt"
+                            href="/nacenenie"
                             className="relative inline-flex items-center gap-2 bg-[#E31C25] hover:bg-[#c0151d] text-white font-bold text-sm px-6 py-3 rounded-sm tracking-widest uppercase transition-all duration-300 hover:shadow-lg hover:shadow-[#E31C25]/40 hover:-translate-y-0.5 group overflow-hidden"
                             style={{ fontFamily: 'var(--font-montserrat)' }}
                         >
-                            <span className="relative z-10">REZERVOVAŤ TERMÍN</span>
+                            <span className="relative z-10">OBJEDNAŤ SA</span>
                             <span className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300 skew-x-12" />
                         </Link>
                     </motion.div>
