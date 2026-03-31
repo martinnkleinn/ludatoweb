@@ -23,6 +23,27 @@ type PricingCategory = {
 
 const pricingCategories: PricingCategory[] = [
     {
+        category: 'NORMOHODINY',
+        items: [
+            {
+                service: 'Ľahká práca – jednoduché, rýchle úkony bez väčšej demontáže',
+                price: '28',
+                unit: '/NH',
+            },
+            {
+                service: 'Stredná práca – vyžadujúca viac času alebo čiastočnú demontáž',
+                price: '33',
+                unit: '/NH',
+            },
+            {
+                service: 'Ťažká práca – náročné zásahy (rozvody, spojka, turbo, EGR, DPF, opravy motora, elektro, demontáž agregátov)',
+                price: '38',
+                unit: '/NH',
+                highlight: true,
+            },
+        ],
+    },
+    {
         category: 'KONTROLY VOZIDLA',
         items: [
             { service: 'Všeobecná kontrola vozidla', price: '30' },
@@ -295,25 +316,41 @@ export default function CennikPage() {
                             závisia od konkrétneho vozidla.
                         </motion.p>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.35 }}
-                            className="mt-8 inline-flex items-center gap-4 bg-[#E31C25] text-white px-8 py-4 rounded-sm shadow-lg shadow-[#E31C25]/30"
+                            className="mt-8 inline-grid grid-cols-3 divide-x divide-white/20 bg-white/5 border border-white/10 rounded-sm overflow-hidden shadow-xl"
                         >
-                            <div>
-                                <div className="text-xs uppercase tracking-widest opacity-80" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                    Normohodina
+                            {[
+                                { label: 'Ľahká práca', price: '28', note: 'rýchle úkony' },
+                                { label: 'Stredná práca', price: '33', note: 'čiastočná demontáž' },
+                                { label: 'Ťažká práca', price: '38', note: 'náročné zásahy', accent: true },
+                            ].map((tier) => (
+                                <div
+                                    key={tier.label}
+                                    className={`flex flex-col items-center px-6 py-5 gap-1 ${tier.accent ? 'bg-[#E31C25]/15' : ''}`}
+                                >
+                                    <span
+                                        className="text-white/50 text-[10px] uppercase tracking-widest font-semibold"
+                                        style={{ fontFamily: 'var(--font-montserrat)' }}
+                                    >
+                                        {tier.label}
+                                    </span>
+                                    <span
+                                        className={`text-3xl font-black ${tier.accent ? 'text-[#E31C25]' : 'text-white'}`}
+                                        style={{ fontFamily: 'var(--font-montserrat)' }}
+                                    >
+                                        {tier.price}<span className="text-xl">€</span>
+                                        <span className="text-sm font-medium text-white/40">/NH</span>
+                                    </span>
+                                    <span
+                                        className="text-white/35 text-[10px]"
+                                        style={{ fontFamily: 'var(--font-inter)' }}
+                                    >
+                                        {tier.note}
+                                    </span>
                                 </div>
-                                <div className="text-4xl font-black" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                    28€
-                                </div>
-                            </div>
-                            <div className="w-px h-12 bg-white/30" />
-                            <div className="text-left">
-                                <div className="text-xs opacity-80" style={{ fontFamily: 'var(--font-inter)' }}>
-                                    Pracovný čas<br />technika vrátane<br />materiálu
-                                </div>
-                            </div>
+                            ))}
                         </motion.div>
                     </div>
                 </div>
