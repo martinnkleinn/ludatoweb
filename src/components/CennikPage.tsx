@@ -2,28 +2,123 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const pricingItems = [
-    { service: 'VÝMENA OLEJA', price: '30', prefix: 'od' },
-    { service: 'VÝMENA BŔZD', price: '50', prefix: 'od' },
-    { service: 'DIAGNOSTIKA', price: '20', prefix: 'od' },
-    { service: 'VÝMENA PNEUMATÍK', price: '20', prefix: 'od' },
-    { service: 'VÝMENA BATÉRIE', price: '30', prefix: 'od' },
-    { service: 'GEOMETRIA', price: '65', prefix: '' },
-    { service: 'TEPOVANIE cez deň', price: '50', prefix: 'od' },
-    { service: 'TEPOVANIE v noci', price: '80', prefix: 'od' },
-    { service: 'ČISTENIE INTERIÉRU + VYSAVANIE', price: '45', prefix: '' },
-    { service: 'PICKUP VOZIDLA', price: '50', prefix: '' },
-    { service: 'ODŤAH VOZIDLA', price: '170', prefix: '' },
+type PriceItem = {
+    service: string;
+    price: string | null;
+    prefix?: string;
+    unit?: string;
+    highlight?: boolean;
+    note?: boolean;
+};
+
+type PricingCategory = {
+    category: string;
+    items: PriceItem[];
+    footnote?: string;
+};
+
+const pricingCategories: PricingCategory[] = [
     {
-        service: 'SPROSTREDKOVANIE STK/EK + KONTROLA PRED STK/EK',
-        price: '130',
-        prefix: '',
-        highlight: true,
+        category: 'KONTROLY VOZIDLA',
+        items: [
+            { service: 'Všeobecná kontrola vozidla', price: '30' },
+            { service: 'Dymová skúška netesností', price: '30' },
+            { service: 'Kontrola podvozku a náprav', price: '30' },
+            { service: 'Kontrola nastavenia geometrie', price: '30' },
+            { service: 'Kontrola pred STK + EK', price: '30' },
+            { service: 'Diagnostika vozidla', price: '30' },
+            { service: 'Kontrola motorového priestoru', price: '30' },
+            { service: 'Kontrola elektriky a osvetlenia', price: '30' },
+            { service: 'Kontrola podvozku a náprav (základná)', price: '20' },
+        ],
+    },
+    {
+        category: 'GEOMETRIA',
+        items: [
+            { service: 'Kontrola nastavenia geometrie', price: '20' },
+            { service: 'Geometria prednej nápravy', price: '55' },
+            { service: 'Geometria prednej a zadnej nápravy', price: '65' },
+        ],
+    },
+    {
+        category: 'OLEJOVÝ SERVIS',
+        items: [
+            { service: 'Výmena oleja + olejový filter', price: '30' },
+            { service: 'Výmena oleja + olejový filter + vzduchový filter', price: '40' },
+            { service: 'Výmena oleja + olejový filter + vzduchový filter + kabínový filter', price: '50' },
+            { service: 'Kompletný servis (vrátane palivového filtra)', price: '60' },
+        ],
+        footnote: '* Materiál naceňujeme individuálne podľa EČV',
+    },
+    {
+        category: 'BRZDY',
+        items: [
+            { service: 'Kontrola bŕzd', price: '30' },
+            { service: 'Výmena brzdovej kvapaliny', price: '40' },
+            { service: 'Výmena predných kotúčov a platničiek', price: '60' },
+            { service: 'Výmena predných platničiek', price: '40' },
+            { service: 'Výmena zadných kotúčov a platničiek', price: '60' },
+            { service: 'Výmena zadných platničiek', price: '40' },
+        ],
+    },
+    {
+        category: 'PREVODOVKY',
+        items: [
+            { service: 'Automatická prevodovka – výmena náplne', price: '60', prefix: 'od' },
+            { service: 'Manuálna prevodovka – výmena náplne', price: '60', prefix: 'od' },
+        ],
+        footnote: '* Materiál naceňujeme individuálne',
+    },
+    {
+        category: 'PODVOZOK',
+        items: [
+            { service: 'Kontrola podvozku', price: '20' },
+            { service: 'Opravy (tlmiče, ramená, ložiská…)', price: null },
+        ],
+    },
+    {
+        category: 'PREZUTIE KOLIES',
+        items: [
+            { service: '12" – 14"', price: '30' },
+            { service: '15" – 16"', price: '35' },
+            { service: '17" – 19"', price: '40' },
+        ],
+    },
+    {
+        category: 'STK A EK',
+        items: [
+            { service: 'Sprostredkovanie kontroly STK + EK', price: '130', highlight: true },
+        ],
+    },
+    {
+        category: 'DEZINFEKCIA',
+        items: [
+            { service: 'Ozónová dezinfekcia interiéru', price: '20' },
+        ],
+    },
+    {
+        category: 'PREVÁDZKOVÉ KVAPALINY',
+        items: [
+            { service: 'Ostrekovač', price: '2,50', unit: '/l' },
+            { service: 'Chladiaca kvapalina G12', price: '3,50', unit: '/l' },
+            { service: 'AdBlue 10 l', price: '25' },
+            { service: 'Brzdová kvapalina DOT4', price: '6', unit: '/l' },
+        ],
+    },
+    {
+        category: 'ĎALŠIE SLUŽBY',
+        items: [
+            { service: 'Tepovanie cez deň', price: '50', prefix: 'od' },
+            { service: 'Tepovanie v noci', price: '80', prefix: 'od' },
+            { service: 'Čistenie interiéru + vysávanie', price: '45' },
+            { service: 'Pickup vozidla', price: '50' },
+            { service: 'Odťah vozidla', price: '170' },
+            { service: 'Výmena batérie', price: '30', prefix: 'od' },
+        ],
     },
 ];
 
@@ -33,13 +128,7 @@ const hours = [
     { day: 'Obedová prestávka', time: '12:00 – 13:00' },
 ];
 
-function PriceRow({
-    item,
-    index,
-}: {
-    item: (typeof pricingItems)[0];
-    index: number;
-}) {
+function PriceRow({ item, index }: { item: PriceItem; index: number }) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: '-40px' });
 
@@ -48,51 +137,117 @@ function PriceRow({
             ref={ref}
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.4, delay: index * 0.05 }}
-            className={`group flex items-center justify-between gap-4 py-4 px-6 rounded-sm border transition-all duration-300 hover:border-[#E31C25]/50 hover:bg-[#E31C25]/5 ${item.highlight
-                ? 'border-[#E31C25]/40 bg-[#E31C25]/10'
-                : 'border-white/8 bg-white/3'
-                }`}
+            transition={{ duration: 0.4, delay: index * 0.04 }}
+            className={`group flex items-center justify-between gap-4 py-4 px-6 rounded-sm border transition-all duration-300 hover:border-[#E31C25]/50 hover:bg-[#E31C25]/5 ${
+                item.highlight
+                    ? 'border-[#E31C25]/40 bg-[#E31C25]/10'
+                    : 'border-white/8 bg-white/3'
+            }`}
         >
-            {/* Service name */}
             <div className="flex items-center gap-3 min-w-0">
                 <span
-                    className={`text-[#E31C25] font-black text-sm flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity`}
+                    className="text-[#E31C25] font-black text-sm flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity"
                     style={{ fontFamily: 'var(--font-montserrat)' }}
                 >
-          //
+                    //
                 </span>
                 <span
-                    className={`text-sm font-semibold tracking-wide leading-tight ${item.highlight ? 'text-white' : 'text-white/80'
-                        }`}
+                    className={`text-sm font-semibold tracking-wide leading-tight ${
+                        item.highlight ? 'text-white' : 'text-white/80'
+                    }`}
                     style={{ fontFamily: 'var(--font-montserrat)' }}
                 >
                     {item.service}
                 </span>
             </div>
 
-            {/* Dotted line */}
             <div className="flex-1 border-b border-dashed border-white/15 mx-2 min-w-[20px]" />
 
-            {/* Price */}
             <div className="flex items-baseline gap-1 flex-shrink-0">
-                {item.prefix && (
+                {item.price === null ? (
                     <span
-                        className="text-white/50 text-xs font-medium"
+                        className="text-white/40 text-sm font-medium"
                         style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                        {item.prefix}
+                        Na dopyt
                     </span>
+                ) : (
+                    <>
+                        {item.prefix && (
+                            <span
+                                className="text-white/50 text-xs font-medium"
+                                style={{ fontFamily: 'var(--font-inter)' }}
+                            >
+                                {item.prefix}
+                            </span>
+                        )}
+                        <span
+                            className={`text-xl font-black ${
+                                item.highlight ? 'text-[#E31C25]' : 'text-white'
+                            }`}
+                            style={{ fontFamily: 'var(--font-montserrat)' }}
+                        >
+                            {item.price}
+                            <span className="text-base">€</span>
+                            {item.unit && (
+                                <span className="text-sm font-medium text-white/50">{item.unit}</span>
+                            )}
+                        </span>
+                    </>
                 )}
+            </div>
+        </motion.div>
+    );
+}
+
+function CategorySection({
+    cat,
+    catIndex,
+}: {
+    cat: PricingCategory;
+    catIndex: number;
+}) {
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true, margin: '-60px' });
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: catIndex * 0.05 }}
+            className="space-y-2"
+        >
+            <div className="flex items-center gap-3 mb-4 pt-2">
                 <span
-                    className={`text-xl font-black ${item.highlight ? 'text-[#E31C25]' : 'text-white'
-                        }`}
+                    className="text-[#E31C25] font-black text-xs"
                     style={{ fontFamily: 'var(--font-montserrat)' }}
                 >
-                    {item.price}
-                    <span className="text-base">€</span>
+                    //
                 </span>
+                <h2
+                    className="text-white/60 text-xs tracking-[0.3em] uppercase font-bold"
+                    style={{ fontFamily: 'var(--font-montserrat)' }}
+                >
+                    {cat.category}
+                </h2>
+                <div className="flex-1 h-px bg-white/8" />
             </div>
+
+            <div className="space-y-2">
+                {cat.items.map((item, i) => (
+                    <PriceRow key={`${cat.category}-${item.service}`} item={item} index={i} />
+                ))}
+            </div>
+
+            {cat.footnote && (
+                <p
+                    className="text-white/30 text-xs pl-6 pt-1"
+                    style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                    {cat.footnote}
+                </p>
+            )}
         </motion.div>
     );
 }
@@ -104,12 +259,11 @@ export default function CennikPage() {
             <main className="min-h-screen bg-[#111111]">
                 {/* Hero strip */}
                 <div className="relative bg-gradient-to-b from-[#1D1D1B] to-[#111111] pt-32 pb-20 overflow-hidden">
-                    {/* Background // */}
                     <div
                         className="absolute left-0 top-1/2 -translate-y-1/2 text-[22vw] font-black text-white/3 leading-none select-none pointer-events-none"
                         style={{ fontFamily: 'var(--font-montserrat)' }}
                     >
-            //
+                        //
                     </div>
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
                         <motion.p
@@ -138,9 +292,8 @@ export default function CennikPage() {
                             style={{ fontFamily: 'var(--font-inter)' }}
                         >
                             Žiadne prekvapenia, žiadne skryté poplatky. Ceny sú orientačné a
-                            závisejú od konkrétneho vozidla.
+                            závisia od konkrétneho vozidla.
                         </motion.p>
-                        {/* Normohodina badge */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -165,10 +318,10 @@ export default function CennikPage() {
                     </div>
                 </div>
 
-                {/* Pricing table */}
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-3">
-                    {pricingItems.map((item, i) => (
-                        <PriceRow key={item.service} item={item} index={i} />
+                {/* Pricing by category */}
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+                    {pricingCategories.map((cat, i) => (
+                        <CategorySection key={cat.category} cat={cat} catIndex={i} />
                     ))}
                 </div>
 
@@ -189,7 +342,6 @@ export default function CennikPage() {
 
                 {/* Opening hours + info */}
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Hours */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -226,7 +378,6 @@ export default function CennikPage() {
                         </div>
                     </motion.div>
 
-                    {/* Company info */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}

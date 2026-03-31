@@ -5,16 +5,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 const servicesOptions = [
-    'Základný servis',
-    'Výmena Bŕzd + odvzdušnenie',
-    'Výmena oleja + filtre',
-    'Tepovanie',
-    'Geometria',
-    'Výmena batérie + kódovanie',
-    'Čistenie interiéru + vysávanie',
     'Diagnostika vozidla',
-    'Kontrola podvozku',
-    'Sprostredkovanie STK/EK + Kontrola pred STK/EK',
+    'Kontrola pred STK + EK',
+    'Sprostredkovanie STK + EK',
+    'Olejový servis (výmena oleja + filtre)',
+    'Výmena bŕzd + odvzdušnenie',
+    'Geometria',
+    'Prezutie kolies',
+    'Oprava podvozku',
+    'Výmena náplne prevodovky',
+    'Ozónová dezinfekcia interiéru',
+    'Tepovanie',
+    'Čistenie interiéru + vysávanie',
+    'Výmena batérie',
+    'Pickup / odťah vozidla',
     'Iné (špecifikujte v správe)',
 ];
 
