@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 const servicesOptions = [
     'Diagnostika vozidla',
@@ -11,7 +12,8 @@ const servicesOptions = [
     'Olejový servis (výmena oleja + filtre)',
     'Výmena bŕzd + odvzdušnenie',
     'Geometria',
-    'Prezutie kolies',
+    'Kompletné prezutie kolies',
+    'Preváženie a prehodenie kolies na disku',
     'Oprava podvozku',
     'Výmena náplne prevodovky',
     'Ozónová dezinfekcia interiéru',
@@ -92,7 +94,8 @@ Doplňujúce info: ${formState.otherDetails || 'Žiadne'}
     const labelClass = 'block text-white/60 text-xs tracking-widest uppercase mb-2';
 
     return (
-        <div className="min-h-screen bg-[#111111] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col items-center justify-center">
+        <div className="min-h-screen bg-[#111111] pt-20 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col items-center justify-center">
+            <Navbar />
 
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-[#E31C25]/5 to-transparent mix-blend-screen pointer-events-none" />

@@ -4,6 +4,7 @@ import ServicesSection from '@/components/ServicesSection';
 import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import ContactSection from '@/components/ContactSection';
+import StudioFormaAd from '@/components/StudioFormaAd';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <AboutSection />
       <ReviewsSection />
       <ContactSection />
+      <StudioFormaAd />
       <Footer />
     </main>
   );

@@ -143,8 +143,8 @@ export default function ContactSection() {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: 0.8 }}
-                                        className="text-xl text-[#E31C25]"
-                                        style={{ fontFamily: 'var(--font-dancing)' }}
+                                        className="text-lg text-[#E31C25] font-semibold"
+                                        style={{ fontFamily: 'var(--font-inter)' }}
                                     >
                                         Ozveme sa vám čoskoro!
                                     </motion.p>
@@ -231,7 +231,7 @@ export default function ContactSection() {
                                         </svg>
                                     ),
                                     label: 'Adresa servisu',
-                                    value: 'Kadnárova 3, 831 54 Bratislava – Rača',
+                                    value: 'Odborárska 52, 831 02 Bratislava',
                                 },
                                 {
                                     icon: (
@@ -270,20 +270,20 @@ export default function ContactSection() {
                         {/* Google Map embed — correct location, no fake overlay pin */}
                         <div className="rounded-sm overflow-hidden border border-white/10 h-64">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.763315303278!2d17.1387896!3d48.1958468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8faf19a09f43%3A0xf675723b16b8c3cd!2sLudato%20Family%20Autoservis!5e1!3m2!1sen!2ssk!4v1773136423319!5m2!1sen!2ssk"
+                                src="https://maps.google.com/maps?q=Odbor%C3%A1rska%2052,%20831%2002%20Bratislava&t=&z=16&ie=UTF8&iwloc=&output=embed"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0, filter: 'grayscale(60%) contrast(110%)' }}
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                title="LUDATO FAMILY Cars Services — Karpatské námestie 10/A, Bratislava"
+                                title="LUDATO FAMILY Cars Services — Odborárska 52, Bratislava"
                             />
                         </div>
 
                         {/* Direct link */}
                         <a
-                            href="https://maps.app.goo.gl/8g5EwkLD8tvobwV39"
+                            href="https://www.google.com/maps/place/Odbor%C3%A1rska+52,+831+02+Bratislava/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-[#E31C25] hover:text-white text-sm font-semibold tracking-wide transition-colors duration-300"

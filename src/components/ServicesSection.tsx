@@ -75,13 +75,6 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                 <div className="absolute top-3 left-5 w-px h-6 bg-[#E31C25] rotate-[20deg]" />
             </div>
 
-            {/* Background number */}
-            <div
-                className="absolute -top-4 -right-2 text-8xl font-black text-white/4 select-none pointer-events-none"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
-            >
-                0{index + 1}
-            </div>
 
             {/* Icon */}
             <div className="text-[#E31C25] mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -182,13 +175,11 @@ export default function ServicesSection() {
                     className="text-center mt-14"
                 >
                     <a
-                        href="/nacenenie"
-                        className="inline-flex items-center gap-3 text-white/70 hover:text-[#E31C25] text-sm font-semibold tracking-widest uppercase transition-colors duration-300 group"
+                        href="/cennik"
+                        className="text-white/70 hover:text-[#E31C25] text-sm font-semibold tracking-widest uppercase transition-colors duration-300"
                         style={{ fontFamily: 'var(--font-montserrat)' }}
                     >
-                        <span className="w-8 h-px bg-current group-hover:w-12 transition-all duration-300" />
-                        Objednať sa
-                        <span className="w-8 h-px bg-current group-hover:w-12 transition-all duration-300" />
+                        Pozrieť kompletný cenník →
                     </a>
                 </motion.div>
             </div>

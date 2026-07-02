@@ -6,23 +6,20 @@ import { motion, useInView } from 'framer-motion';
 const reviews = [
     {
         name: 'Martin Kováčik',
-        car: 'VW Golf VII',
         rating: 5,
-        text: 'Konečne servis, kde cítite, že vám na aute naozaj záleží. Diagnostika bola hotová za hodinu, oprava za deň. Cena zodpovedá kvalite — odporúčam všetkým!',
+        text: 'Super servis, diagnostiku mali hotovú za hodinu. Férové ceny, odporúčam.',
         initials: 'MK',
     },
     {
         name: 'Jana Novotná',
-        car: 'Škoda Octavia',
         rating: 5,
-        text: 'Ako žena nemusím mať strach, že ma obklamu. V servise mi všetko podrobne vysvetlili a ukázali, čo treba vymeniť. Takúto úprimnosť a ochotu som dávno nezažila.',
+        text: 'Konečne servis kde mi všetko vysvetlili dopredu. Žiadne prekvapenia na faktúre.',
         initials: 'JN',
     },
     {
         name: 'Tomáš Blaho',
-        car: 'BMW 3 Série',
         rating: 5,
-        text: 'Prišiel som so záhadnou chybou, ktorú iné servisy nevedeli odhaliť. Tu to našli hneď. Rodinný prístup, moderná technika — perfektná kombinácia!',
+        text: 'Prišiel som s chybou čo inde nevedeli nájsť, tu ju odhalili hneď. Paráda.',
         initials: 'TB',
     },
 ];
@@ -121,12 +118,6 @@ export default function ReviewsSection() {
                                     >
                                         {review.name}
                                     </div>
-                                    <div
-                                        className="text-white/40 text-xs"
-                                        style={{ fontFamily: 'var(--font-inter)' }}
-                                    >
-                                        {review.car}
-                                    </div>
                                 </div>
                             </div>
 
@@ -144,7 +135,12 @@ export default function ReviewsSection() {
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="mt-12 flex justify-center"
                 >
-                    <div className="inline-flex items-center gap-4 border border-white/10 rounded-sm px-8 py-4 bg-white/5">
+                    <a
+                        href="https://maps.app.goo.gl/YQtaNBnBdTFTYLZn8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-4 border border-white/10 rounded-sm px-8 py-4 bg-white/5 hover:border-[#E31C25]/50 transition-colors duration-300"
+                    >
                         <div>
                             <div
                                 className="text-3xl font-black text-white"
@@ -162,7 +158,7 @@ export default function ReviewsSection() {
                             <span className="block font-semibold text-white">Google</span>
                             hodnotenie
                         </div>
-                    </div>
+                    </a>
                 </motion.div>
             </div>
         </section>

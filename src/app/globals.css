@@ -8,7 +8,6 @@
   --color-brand-dark: #111111;
   --font-montserrat: var(--font-montserrat);
   --font-inter: var(--font-inter);
-  --font-dancing: var(--font-dancing);
 }
 
 :root {
@@ -66,12 +65,9 @@ body {
   width: 100%;
 }
 
-/* Red glow utility */
-.glow-red {
-  box-shadow: 0 0 30px rgba(227, 28, 37, 0.4);
-}
 
-/* Shield clip path helper */
-.clip-shield {
-  clip-path: polygon(50% 0%, 100% 15%, 100% 70%, 50% 100%, 0% 70%, 0% 15%);
+
+/* Ensure all clickable elements show the pointer cursor */
+a, button, select, [role="button"], input[type="submit"], input[type="button"] {
+  cursor: pointer;
 }

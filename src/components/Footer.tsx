@@ -53,12 +53,6 @@ export default function Footer() {
                             Prémiová precíznosť.<br />
                             Poctivá práca bez kompromisov.
                         </p>
-                        <div
-                            className="mt-4 text-[#E31C25]/40 text-3xl font-black select-none"
-                            style={{ fontFamily: 'var(--font-montserrat)' }}
-                        >
-              //
-                        </div>
                     </div>
 
                     {/* Navigation */}
@@ -101,13 +95,13 @@ export default function Footer() {
                             <li className="flex items-start gap-2">
                                 <span className="text-[#E31C25] mt-0.5">📍</span>
                                 <a
-                                    href="https://maps.app.goo.gl/8g5EwkLD8tvobwV39"
+                                    href="https://www.google.com/maps/place/Odbor%C3%A1rska+52,+831+02+Bratislava/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#E31C25] transition-colors"
                                 >
-                                    <span className="font-semibold text-white">Kadnárova 3</span><br />
-                                    831 54 Bratislava – Rača
+                                    <span className="font-semibold text-white">Odborárska 52</span><br />
+                                    831 02 Bratislava
                                 </a>
                             </li>
                             <li className="flex items-start gap-2">

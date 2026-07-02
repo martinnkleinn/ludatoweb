@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Inter, Dancing_Script } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 
@@ -17,12 +17,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const dancingScript = Dancing_Script({
-  variable: "--font-dancing",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+
 
 export const metadata: Metadata = {
   title: "LUDATO FAMILY Cars Services | Rodinný autoservis",
@@ -50,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="sk" className="scroll-smooth">
       <body
-        className={`${montserrat.variable} ${inter.variable} ${dancingScript.variable} antialiased overflow-x-hidden flex flex-col min-h-screen`}
+        className={`${montserrat.variable} ${inter.variable} antialiased overflow-x-hidden flex flex-col min-h-screen`}
       >
         {children}
         <CookieBanner />

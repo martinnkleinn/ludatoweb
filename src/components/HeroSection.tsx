@@ -37,33 +37,12 @@ export default function HeroSection() {
                 style={{ y }}
                 className="absolute inset-0 bg-gradient-to-br from-[#1D1D1B] via-[#111111] to-[#0a0a0a]"
             >
-                {/* Geometric red accents */}
+                {/* Subtle radial glow accent */}
                 <div className="absolute inset-0 overflow-hidden">
-                    {/* Top-right slash accent */}
-                    <div className="absolute -top-20 -right-20 w-96 h-96 border-4 border-[#E31C25]/20 rotate-45 rounded-sm" />
-                    <div className="absolute top-10 right-10 w-64 h-64 border-2 border-[#E31C25]/10 rotate-45 rounded-sm" />
-                    {/* Bottom-left accent */}
-                    <div className="absolute -bottom-20 -left-20 w-80 h-80 border-4 border-[#E31C25]/15 rotate-12 rounded-sm" />
                     {/* Radial glow */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#E31C25]/5 blur-3xl" />
-                    {/* Grid lines */}
-                    <div
-                        className="absolute inset-0 opacity-5"
-                        style={{
-                            backgroundImage:
-                                'repeating-linear-gradient(0deg, transparent, transparent 80px, #E31C25 80px, #E31C25 81px), repeating-linear-gradient(90deg, transparent, transparent 80px, #E31C25 80px, #E31C25 81px)',
-                        }}
-                    />
                 </div>
             </motion.div>
-
-            {/* Double slash large background text */}
-            <div
-                className="absolute left-0 top-1/2 -translate-y-1/2 text-[20vw] font-black text-white/3 leading-none select-none pointer-events-none"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
-            >
-        //
-            </div>
 
             {/* Content */}
             <motion.div
@@ -80,7 +59,7 @@ export default function HeroSection() {
                         style={{ fontFamily: 'var(--font-montserrat)' }}
                     >
                         <span className="w-4 h-px bg-[#E31C25]" />
-                        Prémiový rodinný autoservis
+                        Rodinný autoservis
                         <span className="w-4 h-px bg-[#E31C25]" />
                     </span>
                 </motion.div>
@@ -96,22 +75,13 @@ export default function HeroSection() {
                     PRECÍZNOSŤ.
                 </motion.h1>
 
-                {/* Script flourish */}
-                <motion.p
-                    variants={itemVariants}
-                    className="text-2xl sm:text-3xl text-white/70 mb-4"
-                    style={{ fontFamily: 'var(--font-dancing)' }}
-                >
-                    Poctivá práca bez kompromisov.
-                </motion.p>
-
                 {/* Sub-headline */}
                 <motion.p
                     variants={itemVariants}
                     className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed"
                     style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                    Komplexná starostlivosť o vozidlá všetkých značiek a modelov.
+                    Poctivá starostlivosť o vozidlá všetkých značiek a modelov.
                     Zažite rozdiel v dôveryhodnom rodinnom servise.
                 </motion.p>
 
@@ -144,9 +114,9 @@ export default function HeroSection() {
                     className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto"
                 >
                     {[
-                        { value: 'Najnovšia', label: 'diagnostická technika' },
-                        { value: 'Osobný', label: 'rodinný prístup' },
-                        { value: '100%', label: 'transparentnosť cien' },
+                        { value: '10+', label: 'rokov skúseností' },
+                        { value: '5.0 ★', label: 'Google hodnotenie' },
+                        { value: '100%', label: 'férové ceny vopred' },
                     ].map((stat) => (
                         <div key={stat.label} className="text-center bg-white/5 border border-white/10 rounded-sm p-4 backdrop-blur-sm">
                             <div
@@ -174,7 +144,7 @@ export default function HeroSection() {
                 className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
             >
                 <span className="text-white/40 text-xs tracking-widest uppercase" style={{ fontFamily: 'var(--font-inter)' }}>
-                    Scroll
+                    Scrollujte
                 </span>
                 <motion.div
                     animate={{ y: [0, 8, 0] }}

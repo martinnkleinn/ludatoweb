@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import Navbar from '@/components/Navbar';
@@ -102,11 +102,19 @@ const pricingCategories: PricingCategory[] = [
         ],
     },
     {
-        category: 'PREZUTIE KOLIES',
+        category: 'KOMPLETNÉ PREZUTIE',
+        items: [
+            { service: '12" – 14"', price: '40' },
+            { service: '15" – 17"', price: '50' },
+            { service: '18" – 19"', price: '60' },
+        ],
+    },
+    {
+        category: 'PREVÁŽENIE A PREHODENIE KOLIES NA DISKU',
         items: [
             { service: '12" – 14"', price: '30' },
-            { service: '15" – 16"', price: '35' },
-            { service: '17" – 19"', price: '40' },
+            { service: '15" – 17"', price: '40' },
+            { service: '18" – 19"', price: '50' },
         ],
     },
     {
@@ -150,15 +158,11 @@ const hours = [
 ];
 
 function PriceRow({ item, index }: { item: PriceItem; index: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: '-40px' });
-
     return (
         <motion.div
-            ref={ref}
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.4, delay: index * 0.04 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.03 }}
             className={`group flex items-center justify-between gap-4 py-4 px-6 rounded-sm border transition-all duration-300 hover:border-[#E31C25]/50 hover:bg-[#E31C25]/5 ${
                 item.highlight
                     ? 'border-[#E31C25]/40 bg-[#E31C25]/10'
@@ -166,12 +170,6 @@ function PriceRow({ item, index }: { item: PriceItem; index: number }) {
             }`}
         >
             <div className="flex items-center gap-3 min-w-0">
-                <span
-                    className="text-[#E31C25] font-black text-sm flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity"
-                    style={{ fontFamily: 'var(--font-montserrat)' }}
-                >
-                    //
-                </span>
                 <span
                     className={`text-sm font-semibold tracking-wide leading-tight ${
                         item.highlight ? 'text-white' : 'text-white/80'
@@ -273,7 +271,21 @@ function CategorySection({
     );
 }
 
+const TABS = [
+    { id: 'diagnostika', label: 'Diagnostika & STK', categories: ['NORMOHODINY', 'KONTROLY VOZIDLA', 'STK A EK', 'DEZINFEKCIA'] },
+    { id: 'podvozok', label: 'Podvozok & Brzdy', categories: ['GEOMETRIA', 'BRZDY', 'PODVOZOK'] },
+    { id: 'pneuservis', label: 'Pneuservis', categories: ['KOMPLETNÉ PREZUTIE', 'PREVÁŽENIE A PREHODENIE KOLIES NA DISKU'] },
+    { id: 'kvapaliny', label: 'Kvapaliny & Servis', categories: ['OLEJOVÝ SERVIS', 'PREVODOVKY', 'PREVÁDZKOVÉ KVAPALINY', 'ĎALŠIE SLUŽBY'] },
+];
+
 export default function CennikPage() {
+    const [activeTab, setActiveTab] = useState('diagnostika');
+
+    const activeTabObj = TABS.find((t) => t.id === activeTab);
+    const activeCategories = pricingCategories.filter((cat) =>
+        activeTabObj?.categories.includes(cat.category)
+    );
+
     return (
         <>
             <Navbar />
@@ -355,11 +367,44 @@ export default function CennikPage() {
                     </div>
                 </div>
 
-                {/* Pricing by category */}
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
-                    {pricingCategories.map((cat, i) => (
-                        <CategorySection key={cat.category} cat={cat} catIndex={i} />
-                    ))}
+                {/* Tabs Navigation */}
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-4">
+                    <div className="flex flex-wrap justify-center gap-2 border-b border-white/10 pb-4">
+                        {TABS.map((tab) => {
+                            const isActive = activeTab === tab.id;
+                            return (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`relative px-5 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-colors duration-300 rounded-sm cursor-pointer ${
+                                        isActive ? 'text-white' : 'text-white/50 hover:text-white'
+                                    }`}
+                                    style={{ fontFamily: 'var(--font-montserrat)' }}
+                                >
+                                    <span className="relative z-10">{tab.label}</span>
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeCennikTab"
+                                            className="absolute inset-0 bg-[#E31C25] rounded-sm"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                        />
+                                    )}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Pricing by category grid */}
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+                    <motion.div 
+                        layout
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
+                    >
+                        {activeCategories.map((cat, i) => (
+                            <CategorySection key={cat.category} cat={cat} catIndex={i} />
+                        ))}
+                    </motion.div>
                 </div>
 
                 {/* Disclaimer */}
@@ -438,8 +483,8 @@ export default function CennikPage() {
                             <li className="flex items-start gap-3">
                                 <span className="text-[#E31C25] flex-shrink-0 text-base">📍</span>
                                 <div>
-                                    Kadnárova 3<br />
-                                    <span className="text-[#E31C25] font-semibold">831 54 Bratislava – Rača</span>
+                                    Odborárska 52<br />
+                                    <span className="text-[#E31C25] font-semibold">831 02 Bratislava</span>
                                     <div className="text-white/40 text-xs mt-2" style={{ fontFamily: 'var(--font-inter)' }}>
                                         Fakturačné údaje:<br />
                                         LUDATO FAMILY, s.r.o<br />
