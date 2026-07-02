@@ -270,7 +270,7 @@ export default function ContactSection() {
                         {/* Google Map embed — correct location, no fake overlay pin */}
                         <div className="rounded-sm overflow-hidden border border-white/10 h-64">
                             <iframe
-                                src="https://maps.google.com/maps?q=Odbor%C3%A1rska%2052,%20831%2002%20Bratislava&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                src="https://maps.google.com/maps?q=Ludato+Family+Autoservis,Odbor%C3%A1rska%2052,%20831%2002%20Bratislava&t=&z=16&ie=UTF8&iwloc=&output=embed"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0, filter: 'grayscale(60%) contrast(110%)' }}
@@ -283,7 +283,7 @@ export default function ContactSection() {
 
                         {/* Direct link */}
                         <a
-                            href="https://www.google.com/maps/place/Odbor%C3%A1rska+52,+831+02+Bratislava/"
+                            href="https://maps.app.goo.gl/xaKkcTPLukbzixYB6"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-[#E31C25] hover:text-white text-sm font-semibold tracking-wide transition-colors duration-300"

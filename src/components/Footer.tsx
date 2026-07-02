@@ -95,7 +95,7 @@ export default function Footer() {
                             <li className="flex items-start gap-2">
                                 <span className="text-[#E31C25] mt-0.5">📍</span>
                                 <a
-                                    href="https://www.google.com/maps/place/Odbor%C3%A1rska+52,+831+02+Bratislava/"
+                                    href="https://maps.app.goo.gl/xaKkcTPLukbzixYB6"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:text-[#E31C25] transition-colors"
