@@ -283,7 +283,7 @@ const TABS = [
     { id: 'diagnostika', label: 'Diagnostika & STK', categories: ['NORMOHODINY', 'KONTROLY VOZIDLA', 'STK A EK', 'DEZINFEKCIA'] },
     { id: 'podvozok', label: 'Podvozok & Brzdy', categories: ['GEOMETRIA', 'BRZDY', 'PODVOZOK'] },
     { id: 'pneuservis', label: 'Pneuservis', categories: ['KOMPLETNÉ PREZUTIE', 'PREVÁŽENIE A PREHODENIE KOLIES NA DISKU'] },
-    { id: 'kvapaliny', label: 'Kvapaliny & Servis', categories: ['OLEJOVÝ SERVIS', 'PREVODOVKY', 'PREVÁDZKOVÉ KVAPALINY', 'ĎALŠIE SLUŽBY'] },
+    { id: 'kvapaliny', label: 'Kvapaliny & Servis', categories: ['OLEJOVÝ SERVIS', 'PREVODOVKY', 'KLIMATIZÁCIA', 'PREVÁDZKOVÉ KVAPALINY', 'ĎALŠIE SLUŽBY'] },
 ];
 
 export default function CennikPage() {
