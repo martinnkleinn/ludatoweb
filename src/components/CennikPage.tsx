@@ -124,6 +124,14 @@ const pricingCategories: PricingCategory[] = [
         ],
     },
     {
+        category: 'KLIMATIZÁCIA',
+        items: [
+            { service: 'Kontrola, tlakovanie a preplnenie klimatizácie – staré chladivo R134a', price: '40' },
+            { service: 'Kontrola, tlakovanie a preplnenie klimatizácie – nové chladivo R1234yf', price: '48' },
+        ],
+        footnote: '* Uvedené ceny sú bez materiálu. Chladivo R134a – 0,17 € bez DPH / 1 g, chladivo R1234yf – 0,28 € bez DPH / 1 g',
+    },
+    {
         category: 'DEZINFEKCIA',
         items: [
             { service: 'Ozónová dezinfekcia interiéru', price: '20' },
@@ -152,9 +160,9 @@ const pricingCategories: PricingCategory[] = [
 ];
 
 const hours = [
-    { day: 'Pondelok – Štvrtok', time: '9:00 – 16:00' },
-    { day: 'Piatok', time: '7:00 – 14:00' },
-    { day: 'Obedová prestávka', time: '12:00 – 13:00' },
+    { day: 'Pondelok – Štvrtok', time: '7:00 – 17:00' },
+    { day: 'Piatok', time: '7:00 – 16:00' },
+    { day: 'Sobota – Nedeľa', time: 'Zatvorené' },
 ];
 
 function PriceRow({ item, index }: { item: PriceItem; index: number }) {

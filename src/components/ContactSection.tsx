@@ -250,7 +250,7 @@ export default function ContactSection() {
                                         </svg>
                                     ),
                                     label: 'Otváracie hodiny',
-                                    value: 'Po–Štvrtok 9:00–16:00 | Piatok 7:00–14:00 | Obedová prestávka 12:00–13:00',
+                                    value: 'Po–Štvrtok 7:00–17:00 | Piatok 7:00–16:00 | Sobota – Nedeľa zatvorené',
                                 },
                             ].map((item) => (
                                 <div key={item.label} className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-sm p-4">
