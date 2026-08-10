@@ -64,11 +64,10 @@ Doplňujúce info: ${formState.otherDetails || 'Žiadne'}
         `.trim();
 
         try {
-            const response = await fetch('https://api.web3forms.com/submit', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
                 body: JSON.stringify({
-                    access_key: '292d33ad-231c-4144-8e3b-82777081352a',
                     subject: `Nová žiadosť o cenovú ponuku od ${formState.name} — LUDATO Cars Services`,
                     name: formState.name,
                     email: formState.email,
