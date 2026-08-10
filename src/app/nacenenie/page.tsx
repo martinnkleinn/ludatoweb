@@ -73,6 +73,7 @@ Doplňujúce info: ${formState.otherDetails || 'Žiadne'}
                     email: formState.email,
                     phone: formState.phone,
                     message: fullMessage,
+                    formType: 'quote',
                 }),
             });
             const result = await response.json();

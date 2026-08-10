@@ -35,6 +35,7 @@ export default function ContactSection() {
                     phone: formData.phone,
                     message: formData.message,
                     subject: `Nová správa od ${formData.name} — LUDATO Cars Services`,
+                    formType: 'contact',
                 }),
             });
             const result = await response.json();

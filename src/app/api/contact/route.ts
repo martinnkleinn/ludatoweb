@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { buildContactEmailHtml, buildContactEmailText } from '@/lib/contact-email';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -9,17 +10,16 @@ interface ContactPayload {
     phone?: string;
     message: string;
     subject: string;
+    formType?: 'contact' | 'quote';
 }
+
+const FORM_COPY = {
+    contact: { eyebrow: 'Kontaktný formulár', title: 'Nová správa z webu' },
+    quote: { eyebrow: 'Objednávkový formulár', title: 'Nová žiadosť o cenovú ponuku' },
+};
 
 function stripWrappingQuotes(value: string) {
     return value.replace(/^['"]|['"]$/g, '');
-}
-
-function escapeHtml(value: string) {
-    return value
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
 }
 
 export async function POST(request: NextRequest) {
@@ -30,11 +30,14 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ success: false, error: 'Invalid request body' }, { status: 400 });
     }
 
-    const { name, email, phone, message, subject } = payload;
+    const { name, email, phone, message, subject, formType } = payload;
 
     if (!name || !email || !message || !subject) {
         return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
     }
+
+    const copy = FORM_COPY[formType ?? 'contact'];
+    const fields = { ...copy, name, email, phone, message };
 
     try {
         const { error } = await resend.emails.send({
@@ -42,14 +45,8 @@ export async function POST(request: NextRequest) {
             to: stripWrappingQuotes(process.env.CONTACT_TO!),
             replyTo: email,
             subject,
-            html: `
-                <h2>${escapeHtml(subject)}</h2>
-                <p><strong>Meno:</strong> ${escapeHtml(name)}</p>
-                <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-                ${phone ? `<p><strong>Telefón:</strong> ${escapeHtml(phone)}</p>` : ''}
-                <p><strong>Správa:</strong></p>
-                <p>${escapeHtml(message).replace(/\n/g, '<br />')}</p>
-            `,
+            html: buildContactEmailHtml(fields),
+            text: buildContactEmailText(fields),
         });
 
         if (error) {
