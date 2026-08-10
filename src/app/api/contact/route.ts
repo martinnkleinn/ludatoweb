@@ -11,6 +11,10 @@ interface ContactPayload {
     subject: string;
 }
 
+function stripWrappingQuotes(value: string) {
+    return value.replace(/^['"]|['"]$/g, '');
+}
+
 function escapeHtml(value: string) {
     return value
         .replace(/&/g, '&amp;')
@@ -34,8 +38,8 @@ export async function POST(request: NextRequest) {
 
     try {
         const { error } = await resend.emails.send({
-            from: process.env.CONTACT_FROM!,
-            to: process.env.CONTACT_TO!,
+            from: stripWrappingQuotes(process.env.CONTACT_FROM!),
+            to: stripWrappingQuotes(process.env.CONTACT_TO!),
             replyTo: email,
             subject,
             html: `
