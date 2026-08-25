@@ -13,6 +13,10 @@ type PriceItem = {
     unit?: string;
     highlight?: boolean;
     note?: boolean;
+    /** Struck-through original price, shown before the current one */
+    oldPrice?: string;
+    /** Secondary line under the service name, e.g. per-wheel pricing */
+    sub?: string;
 };
 
 type PricingCategory = {
@@ -27,17 +31,17 @@ const pricingCategories: PricingCategory[] = [
         items: [
             {
                 service: 'Ľahká práca – jednoduché, rýchle úkony bez väčšej demontáže',
-                price: '28',
+                price: '32',
                 unit: '/NH',
             },
             {
                 service: 'Stredná práca – vyžadujúca viac času alebo čiastočnú demontáž',
-                price: '33',
+                price: '35',
                 unit: '/NH',
             },
             {
                 service: 'Ťažká práca – náročné zásahy (rozvody, spojka, turbo, EGR, DPF, opravy motora, elektro, demontáž agregátov)',
-                price: '38',
+                price: '45',
                 unit: '/NH',
                 highlight: true,
             },
@@ -46,81 +50,78 @@ const pricingCategories: PricingCategory[] = [
     {
         category: 'KONTROLY VOZIDLA',
         items: [
-            { service: 'Všeobecná kontrola vozidla', price: '30' },
-            { service: 'Dymová skúška netesností', price: '30' },
-            { service: 'Kontrola podvozku a náprav', price: '30' },
-            { service: 'Kontrola nastavenia geometrie', price: '30' },
-            { service: 'Kontrola pred STK + EK', price: '30' },
-            { service: 'Diagnostika vozidla', price: '30' },
-            { service: 'Kontrola motorového priestoru', price: '30' },
-            { service: 'Kontrola elektriky a osvetlenia', price: '30' },
-            { service: 'Kontrola podvozku a náprav (základná)', price: '20' },
+            { service: 'Všeobecná kontrola vozidla', price: '50' },
+            { service: 'Kontrola podvozku a náprav', price: '40' },
+            { service: 'Kontrola pred STK + EK', price: '50' },
+            { service: 'Diagnostika riadiacej jednotky', price: '40' },
+            { service: 'Kontrola elektroniky a osvetlenia', price: '30' },
         ],
     },
     {
         category: 'GEOMETRIA',
         items: [
-            { service: 'Kontrola nastavenia geometrie', price: '20' },
-            { service: 'Geometria prednej nápravy', price: '55' },
-            { service: 'Geometria prednej a zadnej nápravy', price: '65' },
+            { service: 'Kontrola nastavenia geometrie', price: '16', oldPrice: '20', highlight: true },
+            { service: 'Geometria prednej nápravy', price: '40' },
+            { service: 'Geometria prednej a zadnej nápravy', price: '55' },
         ],
     },
     {
         category: 'OLEJOVÝ SERVIS',
         items: [
-            { service: 'Výmena oleja + olejový filter', price: '30' },
-            { service: 'Výmena oleja + olejový filter + vzduchový filter', price: '40' },
-            { service: 'Výmena oleja + olejový filter + vzduchový filter + kabínový filter', price: '50' },
-            { service: 'Kompletný servis (vrátane palivového filtra)', price: '60' },
+            { service: 'Výmena oleja + olejový filter', price: '35' },
+            { service: 'Výmena oleja + olejový filter + vzduchový filter', price: '45' },
+            { service: 'Výmena oleja + olejový filter + vzduchový filter + kabínový filter', price: '55' },
+            { service: 'Kompletný servis (vrátane palivového filtra)', price: '65' },
         ],
         footnote: '* Materiál naceňujeme individuálne podľa EČV',
     },
     {
         category: 'BRZDY',
         items: [
-            { service: 'Kontrola bŕzd', price: '30' },
-            { service: 'Výmena brzdovej kvapaliny', price: '40' },
-            { service: 'Výmena predných kotúčov a platničiek', price: '60' },
-            { service: 'Výmena predných platničiek', price: '40' },
-            { service: 'Výmena zadných kotúčov a platničiek', price: '60' },
-            { service: 'Výmena zadných platničiek', price: '40' },
+            { service: 'Kontrola bŕzd', price: '35' },
+            { service: 'Výmena brzdovej kvapaliny', price: '45' },
+            { service: 'Výmena predných kotúčov a platničiek', price: '85' },
+            { service: 'Výmena predných platničiek', price: '45' },
+            { service: 'Výmena zadných kotúčov a platničiek', price: '85' },
+            { service: 'Výmena zadných platničiek', price: '45' },
         ],
     },
     {
         category: 'PREVODOVKY',
         items: [
-            { service: 'Automatická prevodovka – výmena náplne', price: '60', prefix: 'od' },
-            { service: 'Manuálna prevodovka – výmena náplne', price: '60', prefix: 'od' },
+            { service: 'Automatická prevodovka – výmena náplne', price: '85', prefix: 'od' },
+            { service: 'Manuálna prevodovka – výmena náplne', price: '75', prefix: 'od' },
         ],
         footnote: '* Materiál naceňujeme individuálne',
     },
     {
         category: 'PODVOZOK',
         items: [
-            { service: 'Kontrola podvozku', price: '20' },
+            { service: 'Kontrola podvozku', price: '30' },
             { service: 'Opravy (tlmiče, ramená, ložiská…)', price: null },
         ],
+        footnote: '* Opravy – individuálne nacenenie',
     },
     {
         category: 'KOMPLETNÉ PREZUTIE',
         items: [
-            { service: '12" – 14"', price: '40' },
-            { service: '15" – 17"', price: '50' },
-            { service: '18" – 19"', price: '60' },
+            { service: '12" – 14"', price: '45', sub: '1 ks pneumatika a disk: 11,25 €' },
+            { service: '15" – 16"', price: '55', sub: '1 ks pneumatika a disk: 13,55 €' },
+            { service: '17" – 19"', price: '65', sub: '1 ks pneumatika a disk: 16,25 €' },
         ],
     },
     {
         category: 'PREVÁŽENIE A PREHODENIE KOLIES NA DISKU',
         items: [
-            { service: '12" – 14"', price: '30' },
-            { service: '15" – 17"', price: '40' },
-            { service: '18" – 19"', price: '50' },
+            { service: '12" – 14"', price: '40', sub: '1 ks pneumatika a disk: 10,00 €' },
+            { service: '15" – 16"', price: '45', sub: '1 ks pneumatika a disk: 11,25 €' },
+            { service: '17" – 19"', price: '50', sub: '1 ks pneumatika a disk: 12,50 €' },
         ],
     },
     {
         category: 'STK A EK',
         items: [
-            { service: 'Sprostredkovanie kontroly STK + EK', price: '130', highlight: true },
+            { service: 'Sprostredkovanie kontroly STK + EK', price: '150', highlight: true },
         ],
     },
     {
@@ -134,16 +135,19 @@ const pricingCategories: PricingCategory[] = [
     {
         category: 'DEZINFEKCIA',
         items: [
-            { service: 'Ozónová dezinfekcia interiéru', price: '20' },
+            { service: 'Ozónová dezinfekcia interiéru', price: '30' },
         ],
     },
     {
         category: 'PREVÁDZKOVÉ KVAPALINY',
         items: [
-            { service: 'Ostrekovač', price: '2,50', unit: '/l' },
-            { service: 'Chladiaca kvapalina G12', price: '3,50', unit: '/l' },
-            { service: 'AdBlue 10 l', price: '25' },
-            { service: 'Brzdová kvapalina DOT4', price: '6', unit: '/l' },
+            { service: 'Ostrekovač', price: '3', unit: '/l' },
+            { service: 'Chladiaca kvapalina G12', price: '22', unit: '/6 l' },
+            { service: 'Chladiaca kvapalina G13', price: '20', unit: '/6 l' },
+            { service: 'AdBlue 10 l', price: '30' },
+            { service: 'Brzdová kvapalina DOT4', price: '7', unit: '/l' },
+            { service: 'Motorový olej 0W20', price: '25', unit: '/l' },
+            { service: 'Motorový olej 5W30', price: '15', unit: '/l' },
         ],
     },
     {
@@ -160,7 +164,7 @@ const pricingCategories: PricingCategory[] = [
 ];
 
 const hours = [
-    { day: 'Pondelok – Štvrtok', time: '7:00 – 17:00' },
+    { day: 'Pondelok – Štvrtok', time: '9:00 – 19:00' },
     { day: 'Piatok', time: '7:00 – 16:00' },
     { day: 'Sobota – Nedeľa', time: 'Zatvorené' },
 ];
@@ -177,7 +181,7 @@ function PriceRow({ item, index }: { item: PriceItem; index: number }) {
                     : 'border-white/8 bg-white/3'
             }`}
         >
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex flex-col gap-1 min-w-0">
                 <span
                     className={`text-sm font-semibold tracking-wide leading-tight ${
                         item.highlight ? 'text-white' : 'text-white/80'
@@ -186,6 +190,14 @@ function PriceRow({ item, index }: { item: PriceItem; index: number }) {
                 >
                     {item.service}
                 </span>
+                {item.sub && (
+                    <span
+                        className="text-white/40 text-xs leading-tight"
+                        style={{ fontFamily: 'var(--font-inter)' }}
+                    >
+                        {item.sub}
+                    </span>
+                )}
             </div>
 
             <div className="flex-1 border-b border-dashed border-white/15 mx-2 min-w-[20px]" />
@@ -206,6 +218,14 @@ function PriceRow({ item, index }: { item: PriceItem; index: number }) {
                                 style={{ fontFamily: 'var(--font-inter)' }}
                             >
                                 {item.prefix}
+                            </span>
+                        )}
+                        {item.oldPrice && (
+                            <span
+                                className="text-white/35 text-sm font-medium line-through decoration-[#E31C25]/70"
+                                style={{ fontFamily: 'var(--font-montserrat)' }}
+                            >
+                                {item.oldPrice} €
                             </span>
                         )}
                         <span
@@ -342,9 +362,9 @@ export default function CennikPage() {
                             className="mt-8 inline-grid grid-cols-3 divide-x divide-white/20 bg-white/5 border border-white/10 rounded-sm overflow-hidden shadow-xl"
                         >
                             {[
-                                { label: 'Ľahká práca', price: '28', note: 'rýchle úkony' },
-                                { label: 'Stredná práca', price: '33', note: 'čiastočná demontáž' },
-                                { label: 'Ťažká práca', price: '38', note: 'náročné zásahy', accent: true },
+                                { label: 'Ľahká práca', price: '32', note: 'rýchle úkony' },
+                                { label: 'Stredná práca', price: '35', note: 'čiastočná demontáž' },
+                                { label: 'Ťažká práca', price: '45', note: 'náročné zásahy', accent: true },
                             ].map((tier) => (
                                 <div
                                     key={tier.label}
@@ -426,7 +446,7 @@ export default function CennikPage() {
                         className="text-white/30 text-xs text-center leading-relaxed border border-white/8 rounded-sm p-4"
                         style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                        * Ceny sú orientačné a môžu sa líšiť v závislosti od značky, modelu a stavu vozidla. Konečná cena bude vždy odsúhlasená pred zahájením prác. Ceny sú uvedené bez DPH, pokiaľ nie je uvedené inak.
+                        * Ceny sú orientačné a môžu sa líšiť v závislosti od značky, modelu a stavu vozidla. Konečná cena bude vždy odsúhlasená pred zahájením prác. Uvedené ceny sú bez materiálu, pokiaľ nie je uvedené inak.
                     </p>
                 </motion.div>
 

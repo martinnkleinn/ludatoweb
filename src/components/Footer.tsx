@@ -107,7 +107,7 @@ export default function Footer() {
                             <li className="flex items-start gap-2">
                                 <span className="text-[#E31C25] mt-0.5">🕐</span>
                                 <span>
-                                    Po–Št: 7:00–17:00<br />
+                                    Po–Št: 9:00–19:00<br />
                                     Pia: 7:00–16:00<br />
                                     So–Ne: Zatvorené
                                 </span>
